@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -10,6 +10,14 @@ import './index.css';
 
 function App() {
   const [view, setView] = useState('home'); // 'home' or 'privacy'
+
+  useEffect(() => {
+    if (view === 'home') {
+      document.title = 'Khalid Ali Khan | Creative Developer | SaaS & AI Solutions';
+    } else if (view === 'privacy') {
+      document.title = 'Privacy Policy | Khalid Ali Khan';
+    }
+  }, [view]);
 
   const navigateToPrivacy = (e) => {
     e?.preventDefault();
