@@ -99,7 +99,11 @@ const Contact = () => {
                 <textarea name="message" placeholder="Tell me about your project..." rows="5" required></textarea>
               </div>
               <button type="submit" className="btn btn-primary btn-lg" disabled={submitting}>
-                {submitting ? 'Sending...' : 'Send Message'}
+                {submitting ? (
+                  <><span className="spinner"></span> Sending...</>
+                ) : (
+                  'Send Message'
+                )}
               </button>
 
               {result && (

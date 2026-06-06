@@ -257,7 +257,12 @@
 .stat-card {
   padding: 1.5rem;
   text-align: center;
-  transition: border-color var(--transition-fast);
+  transition: border-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+  border-color: hsla(var(--accent-1), 0.3);
 }
 
 .stat-value {

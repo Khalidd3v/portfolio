@@ -24,7 +24,12 @@ const Projects = () => {
             <article key={project.id} className="project-card card">
               <div className="project-image">
                 {project.image ? (
-                  <img src={project.image} alt={project.title} loading="lazy" />
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    loading="lazy"
+                    onLoad={(e) => e.target.classList.add('loaded')}
+                  />
                 ) : (
                   <div className="project-image-placeholder">
                     <span className="mono gradient-text">{project.category}</span>

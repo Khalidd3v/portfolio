@@ -169,7 +169,20 @@ const GitHubActivity = () => {
           </div>
 
           {loading ? (
-            <div className="heatmap-loading mono">Loading contribution graph...</div>
+            <div className="heatmap-loading">
+              <div className="heatmap-skeleton">
+                {Array.from({ length: 7 }).map((_, row) => (
+                  <div key={row} className="heatmap-skeleton-row">
+                    {Array.from({ length: 52 }).map((__, col) => (
+                      <div key={col} className="heatmap-skeleton-cell" />
+                    ))}
+                  </div>
+                ))}
+              </div>
+              <span className="mono" style={{ marginTop: '0.75rem', display: 'block' }}>
+                Loading contribution graph...
+              </span>
+            </div>
           ) : (
             <>
               <div className="heatmap-wrapper">

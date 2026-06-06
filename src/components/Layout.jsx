@@ -1,26 +1,32 @@
-import { Outlet, useLocation } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useRef } from 'react';
 import Navbar from './Navbar';
 import Footer from './Footer';
 
 const Layout = () => {
   const { pathname, hash } = useLocation();
+  const navigate = useNavigate();
   const prevPathname = useRef(pathname);
 
   useEffect(() => {
-    if (hash) {
+    if (hash && pathname === '/') {
       const id = hash.replace('#', '');
-      requestAnimationFrame(() => {
+      const attempt = () => {
         const el = document.getElementById(id);
         if (el) {
           el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+          requestAnimationFrame(attempt);
         }
-      });
+      };
+      requestAnimationFrame(attempt);
     } else if (pathname !== prevPathname.current) {
-      window.scrollTo(0, 0);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (hash && pathname !== '/') {
+      navigate(`/${hash}`);
     }
     prevPathname.current = pathname;
-  }, [pathname, hash]);
+  }, [pathname, hash, navigate]);
 
   return (
     <>

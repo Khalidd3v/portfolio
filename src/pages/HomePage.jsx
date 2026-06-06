@@ -1,3 +1,4 @@
+import Reveal from '../components/Reveal';
 import Hero from '../components/Hero';
 import GitHubActivity from '../components/GitHubActivity';
 import Projects from '../components/Projects';
@@ -8,10 +9,10 @@ const HomePage = () => {
   return (
     <>
       <Hero />
-      <GitHubActivity />
-      <Projects />
-      <About />
-      <Contact />
+      <Reveal><GitHubActivity /></Reveal>
+      <Reveal><Projects /></Reveal>
+      <Reveal><About /></Reveal>
+      <Reveal><Contact /></Reveal>
     </>
   );
 };

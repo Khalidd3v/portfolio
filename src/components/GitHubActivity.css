@@ -44,15 +44,40 @@
 
 .heatmap-loading {
   text-align: center;
-  padding: 3rem 0;
+  padding: 2.5rem 0;
   font-size: 0.85rem;
   color: hsl(var(--text-muted));
-  animation: pulse 1.5s ease-in-out infinite;
 }
 
-@keyframes pulse {
-  0%, 100% { opacity: 0.5; }
-  50% { opacity: 1; }
+.heatmap-skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.heatmap-skeleton-row {
+  display: flex;
+  gap: 3px;
+}
+
+.heatmap-skeleton-cell {
+  width: 11px;
+  height: 11px;
+  border-radius: 2px;
+  background: hsl(var(--bg-tertiary));
+  animation: skeletonPulse 1.5s ease-in-out infinite;
+}
+
+.heatmap-skeleton-cell:nth-child(2n) { animation-delay: 0.1s; }
+.heatmap-skeleton-cell:nth-child(3n) { animation-delay: 0.2s; }
+.heatmap-skeleton-cell:nth-child(5n) { animation-delay: 0.3s; }
+.heatmap-skeleton-cell:nth-child(7n) { animation-delay: 0.15s; }
+
+@keyframes skeletonPulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
 }
 
 .heatmap-wrapper {

@@ -24,8 +24,14 @@ const Navbar = () => {
   useEffect(() => setOpen(false), [pathname, hash]);
 
   useEffect(() => {
-    if (open) document.body.style.overflow = 'hidden';
-    else document.body.style.overflow = '';
+    if (open) {
+      document.body.style.overflow = 'hidden';
+      const onKeyDown = (e) => { if (e.key === 'Escape') setOpen(false); };
+      window.addEventListener('keydown', onKeyDown);
+      return () => window.removeEventListener('keydown', onKeyDown);
+    } else {
+      document.body.style.overflow = '';
+    }
     return () => { document.body.style.overflow = ''; };
   }, [open]);
 
@@ -67,6 +73,7 @@ const Navbar = () => {
           className="menu-btn"
           onClick={() => setOpen(prev => !prev)}
           aria-label="Toggle menu"
+          aria-expanded={open}
         >
           {open ? <HiX /> : <HiMenuAlt3 />}
         </button>
