@@ -1,168 +1,222 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
-    SiPython, SiDjango, SiReact, SiBootstrap,
-    SiJavascript, SiPostgresql, SiOpenai, SiLangchain,
-    SiFastapi, SiAmazonwebservices, SiTailwindcss, SiDocker
+  SiPython, SiJavascript, SiTypescript, SiPostgresql, SiMongodb, SiRedis,
+  SiReact, SiNextdotjs, SiTailwindcss, SiDjango, SiFastapi, SiNodedotjs,
+  SiDocker, SiAmazonwebservices, SiNginx, SiGithubactions, SiGit, SiLinux,
+  SiHuggingface,
 } from 'react-icons/si';
-import { HiOutlineDatabase, HiOutlineChip, HiAcademicCap, HiBriefcase, HiLightningBolt } from 'react-icons/hi';
+import { HiOutlineChip, HiAcademicCap, HiBriefcase, HiCode, HiDatabase, HiServer } from 'react-icons/hi';
+import { VscGraph } from 'react-icons/vsc';
 import './About.css';
 
+const SKILLS = [
+  {
+    category: 'Languages',
+    icon: <HiCode />,
+    items: ['Python', 'JavaScript', 'TypeScript', 'SQL', 'HTML5/CSS3'],
+  },
+  {
+    category: 'Backend',
+    icon: <HiServer />,
+    items: ['Django', 'Django REST', 'FastAPI', 'Node.js', 'Express.js', 'REST APIs', 'GraphQL', 'WebSocket'],
+  },
+  {
+    category: 'Frontend',
+    icon: <SiReact />,
+    items: ['React.js', 'Next.js', 'Tailwind CSS', 'Bootstrap', 'Redux', 'React Query'],
+  },
+  {
+    category: 'AI / ML',
+    icon: <HiOutlineChip />,
+    items: ['LangChain', 'OpenAI API', 'RAG', 'Vector DBs', 'Hugging Face', 'Prompt Engineering', 'LLM Fine-tuning', 'Agentic AI'],
+  },
+  {
+    category: 'DevOps & Cloud',
+    icon: <SiDocker />,
+    items: ['Docker', 'AWS (EC2, S3, RDS)', 'CI/CD', 'Nginx', 'GitHub Actions', 'Vercel'],
+  },
+  {
+    category: 'Databases',
+    icon: <HiDatabase />,
+    items: ['PostgreSQL', 'MongoDB', 'Redis', 'ChromaDB', 'SQLite'],
+  },
+  {
+    category: 'Tools',
+    icon: <SiGit />,
+    items: ['Git', 'Linux', 'VS Code', 'Postman', 'Jupyter', 'Figma'],
+  },
+];
+
+const EXPERIENCE = [
+  {
+    company: 'Qurk',
+    url: 'https://qurk.app',
+    role: 'Full Stack Software Engineer',
+    period: '2025 — Present',
+    description: 'Engineering KPIs, AI workflows, AI reporting, and data science solutions at Qurk — a company focused on intelligent business analytics and automation.',
+    tags: ['Python', 'AI/ML', 'React', 'Data Science', 'System Design'],
+  },
+  {
+    company: 'Xmind Limited',
+    role: 'Backend Team Lead & Full Stack Software Engineer',
+    period: '2023 — Aug 2025',
+    description: 'Led the backend engineering team for an AI-powered ANPR (Automatic Number Plate Recognition) SaaS platform managing airport carpark operations worldwide. Architected scalable Django systems and RESTful APIs.',
+    tags: ['Django', 'AI/ANPR', 'Team Leadership', 'SaaS', 'PostgreSQL'],
+  },
+  {
+    company: 'Argumant',
+    url: 'https://argumant.com',
+    role: 'Co-Founder & Full Stack Software Engineer',
+    period: '2022 — Present',
+    description: 'Building and scaling multiple SaaS products including a Multitenant POS system, University Management System, Currency Management System, Blogger SaaS platform, and ZMAHISAB — a cloud-based credit/debit management application with offline-first architecture.',
+    tags: ['React', 'Django', 'Node.js', 'SaaS', 'Startup'],
+  },
+  {
+    company: 'ARKPLUS',
+    role: 'Junior Python Developer',
+    period: '2021 — 2022',
+    description: 'Contributed to client projects focusing on database management, API development, and software optimization across multiple domains.',
+    tags: ['Python', 'SQL', 'Django', 'REST APIs'],
+  },
+];
+
+const EDUCATION = [
+  {
+    degree: 'Bachelor of Science in Computer Science',
+    institution: 'Preston University',
+    period: '2019 — 2023',
+    description: 'Focused on backend systems, data structures, algorithm optimization, and AI-driven automation. Final year project involved machine learning for predictive analytics.',
+  },
+];
+
+const TABS = [
+  { key: 'skills', label: 'Skills', icon: <HiOutlineChip /> },
+  { key: 'experience', label: 'Experience', icon: <HiBriefcase /> },
+  { key: 'education', label: 'Education', icon: <HiAcademicCap /> },
+];
+
 const About = () => {
-    const [activeTab, setActiveTab] = useState('skills');
+  const [activeTab, setActiveTab] = useState('skills');
 
-    const techStack = [
-        { name: 'Python', icon: <SiPython />, color: '#3776AB' },
-        { name: 'Django', icon: <SiDjango />, color: '#092E20' },
-        { name: 'DRF', icon: <SiFastapi />, color: '#009688' },
-        { name: 'React.js', icon: <SiReact />, color: '#61DAFB' },
-        { name: 'JavaScript', icon: <SiJavascript />, color: '#F7DF1E' },
-        { name: 'PostgreSQL', icon: <SiPostgresql />, color: '#4169E1' },
-        { name: 'AI / ML', icon: <HiOutlineChip />, color: '#BB86FC' },
-        { name: 'Langchain', icon: <SiLangchain />, color: '#00A67E' },
-        { name: 'OpenAI', icon: <SiOpenai />, color: '#412991' },
-        { name: 'AWS', icon: <SiAmazonwebservices />, color: '#FF9900' },
-        { name: 'Docker', icon: <SiDocker />, color: '#2496ED' },
-        { name: 'REST APIs', icon: <HiOutlineDatabase />, color: '#FF6F61' },
-    ];
+  return (
+    <section id="about" className="about">
+      <div className="container">
+        <div className="section-header">
+          <h2 className="section-title">
+            Professional <span className="gradient-text">Profile</span>
+          </h2>
+          <p className="section-subtitle">
+            Full Stack Engineer bridging architecture, AI, and product — from startup founding to enterprise-scale systems.
+          </p>
+        </div>
 
-    const experience = [
-        {
-            company: 'Qurk (qurk.app)',
-            role: 'Backend Engineer',
-            period: '2025 - Present',
-            description: 'Engineering high-performance backend systems and scaling platform architecture for the Qurk ecosystem.',
-            skills: ['Python', 'System Design', 'Scale']
-        },
-        {
-            company: 'Xmind Limited',
-            role: 'Lead Backend Developer',
-            period: '2023 - 2025',
-            description: 'Led the backend engineering team in architecting scalable Python/Django systems and RESTful APIs. Drove technical decisions for high-traffic SaaS platforms.',
-            skills: ['Django', 'System Design', 'Leadership']
-        },
-        {
-            company: 'LazyAlgo (Startup)',
-            role: 'Co-Founder',
-            period: '2022 - Present',
-            description: 'Spearheading the development of intelligent automation tools. Managing product strategy and core backend development using AI/ML integrations.',
-            skills: ['AI/ML', 'Strategy', 'Fullstack']
-        },
-        {
-            company: 'ARKPLUS',
-            role: 'Junior Python Developer',
-            period: '2021 - 2022',
-            description: 'Contributed to various client projects, focusing on database management, API development, and software optimization.',
-            skills: ['Python', 'SQL', 'APIs']
-        }
-    ];
+        <div className="tabs-wrapper">
+          <div className="tabs-nav">
+            {TABS.map(({ key, label, icon }) => (
+              <button
+                key={key}
+                className={`tab-btn mono ${activeTab === key ? 'active' : ''}`}
+                onClick={() => setActiveTab(key)}
+              >
+                <span className="tab-icon">{icon}</span>
+                {label}
+              </button>
+            ))}
+          </div>
 
-    const education = [
-        {
-            degree: 'Bachelor of Science in Computer Science',
-            institution: 'Preston University',
-            period: '2019 - 2023',
-            description: 'Focused on backend systems, data structures, and algorithm optimization. Final year project involved AI-driven automation.'
-        }
-    ];
-
-    return (
-        <section id="about" className="about">
-            <div className="container">
-                <div className="about-header">
-                    <h2 className="section-title">Professional <span className="gradient-text">Profile</span></h2>
-                    <p className="about-subtitle">Bridging the gap between complex backend architecture and intelligent AI solutions.</p>
-                </div>
-
-                <div className="about-tabs-container">
-                    <div className="tabs-header glass">
-                        <button
-                            className={`tab-btn ${activeTab === 'skills' ? 'active' : ''}`}
-                            onClick={() => setActiveTab('skills')}
-                        >
-                            <HiLightningBolt /> <span>Skills</span>
-                        </button>
-                        <button
-                            className={`tab-btn ${activeTab === 'experience' ? 'active' : ''}`}
-                            onClick={() => setActiveTab('experience')}
-                        >
-                            <HiBriefcase /> <span>Experience</span>
-                        </button>
-                        <button
-                            className={`tab-btn ${activeTab === 'education' ? 'active' : ''}`}
-                            onClick={() => setActiveTab('education')}
-                        >
-                            <HiAcademicCap /> <span>Education</span>
-                        </button>
+          <div className="tab-panel card">
+            {activeTab === 'skills' && (
+              <div className="skills-container">
+                {SKILLS.map(({ category, icon, items }) => (
+                  <div key={category} className="skill-category">
+                    <h3 className="skill-category-title mono">
+                      <span className="skill-category-icon">{icon}</span>
+                      {category}
+                    </h3>
+                    <div className="skill-pills">
+                      {items.map(item => (
+                        <span key={item} className="skill-pill mono">{item}</span>
+                      ))}
                     </div>
+                  </div>
+                ))}
+              </div>
+            )}
 
-                    <div className="tab-content glass">
-                        {activeTab === 'skills' && (
-                            <div className="skills-grid tab-pane active">
-                                {techStack.map((tech) => (
-                                    <div key={tech.name} className="tech-pill glass">
-                                        <span className="pill-icon" style={{ color: tech.color }}>{tech.icon}</span>
-                                        <span className="pill-name">{tech.name}</span>
-                                    </div>
-                                ))}
-                            </div>
-                        )}
+            {activeTab === 'experience' && (
+              <div className="timeline">
+                {EXPERIENCE.map((exp, i) => (
+                  <div key={i} className="timeline-item">
+                    <div className="timeline-marker">
+                      <div className="timeline-dot" />
+                      {i < EXPERIENCE.length - 1 && <div className="timeline-line" />}
+                    </div>
+                    <div className="timeline-content">
+                      <div className="timeline-header">
+                        <div>
+                          <h3 className="timeline-role">{exp.role}</h3>
+                          <h4 className="timeline-company">
+                            {exp.url ? (
+                              <a href={exp.url} target="_blank" rel="noreferrer" className="company-link">
+                                {exp.company}
+                              </a>
+                            ) : (
+                              exp.company
+                            )}
+                          </h4>
+                        </div>
+                        <span className="period-badge mono">{exp.period}</span>
+                      </div>
+                      <p className="timeline-desc">{exp.description}</p>
+                      <div className="timeline-tags">
+                        {exp.tags.map(tag => (
+                          <span key={tag} className="tag">{tag}</span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
 
-                        {activeTab === 'experience' && (
-                            <div className="experience-timeline tab-pane active">
-                                {experience.map((item, index) => (
-                                    <div key={index} className="timeline-item">
-                                        <div className="timeline-dot"></div>
-                                        <div className="timeline-header">
-                                            <h3>{item.role}</h3>
-                                            <span className="period-badge">{item.period}</span>
-                                        </div>
-                                        <h4 className="company-name">{item.company}</h4>
-                                        <p className="experience-desc">{item.description}</p>
-                                        <div className="timeline-tags">
-                                            {item.skills.map(skill => (
-                                                <span key={skill} className="tag">{skill}</span>
-                                            ))}
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        )}
+            {activeTab === 'education' && (
+              <div className="education-list">
+                {EDUCATION.map((edu, i) => (
+                  <div key={i} className="edu-item">
+                    <div className="edu-icon-wrap">
+                      <HiAcademicCap />
+                    </div>
+                    <div className="edu-info">
+                      <h3 className="edu-degree">{edu.degree}</h3>
+                      <h4 className="edu-institution">
+                        {edu.institution}
+                        <span className="period-badge mono">{edu.period}</span>
+                      </h4>
+                      <p className="edu-desc">{edu.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
 
-                        {activeTab === 'education' && (
-                            <div className="education-list tab-pane active">
-                                {education.map((item, index) => (
-                                    <div key={index} className="edu-item">
-                                        <div className="edu-icon"><HiAcademicCap /></div>
-                                        <div className="edu-details">
-                                            <h3>{item.degree}</h3>
-                                            <h4>{item.institution}</h4>
-                                            <span className="period-badge">{item.period}</span>
-                                            <p>{item.description}</p>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        )}
-                    </div>
-                </div>
-
-                <div className="about-stats">
-                    <div className="about-stat glass">
-                        <span className="stat-value">4+</span>
-                        <span className="stat-name">Years Exp</span>
-                    </div>
-                    <div className="about-stat glass">
-                        <span className="stat-value">15+</span>
-                        <span className="stat-name">Projects</span>
-                    </div>
-                    <div className="about-stat glass">
-                        <span className="stat-value">100%</span>
-                        <span className="stat-name">Precision</span>
-                    </div>
-                </div>
+        <div className="stats-row">
+          {[
+            { value: '6+', label: 'Years Exp' },
+            { value: '20+', label: 'Projects Built' },
+            { value: '3', label: 'SaaS Products' },
+            { value: '2', label: 'Startups Founded' },
+          ].map(({ value, label }) => (
+            <div key={label} className="stat-card card">
+              <span className="stat-value gradient-text">{value}</span>
+              <span className="stat-label mono">{label}</span>
             </div>
-        </section>
-    );
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default About;

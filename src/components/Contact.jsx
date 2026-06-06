@@ -1,85 +1,118 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import { HiMail, HiLocationMarker, HiCheckCircle } from 'react-icons/hi';
 import './Contact.css';
 
 const Contact = () => {
-    const [result, setResult] = useState("");
-    const [isSubmitting, setIsSubmitting] = useState(false);
+  const [result, setResult] = useState('');
+  const [submitting, setSubmitting] = useState(false);
 
-    const onSubmit = async (event) => {
-        event.preventDefault();
-        setIsSubmitting(true);
-        setResult("Sending....");
-        const formData = new FormData(event.target);
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    setSubmitting(true);
+    setResult('Sending...');
 
-        formData.append("access_key", "94072505-089b-49c9-b843-bbbae6397cae");
+    const formData = new FormData(e.target);
+    formData.append('access_key', '94072505-089b-49c9-b843-bbbae6397cae');
 
-        try {
-            const response = await fetch("https://api.web3forms.com/submit", {
-                method: "POST",
-                body: formData
-            });
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData,
+      });
+      const data = await res.json();
 
-            const data = await response.json();
+      if (data.success) {
+        setResult('Message sent successfully. I\'ll get back to you soon.');
+        e.target.reset();
+      } else {
+        setResult(data.message || 'Something went wrong. Please try again.');
+      }
+    } catch {
+      setResult('Network error. Please try again.');
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
-            if (data.success) {
-                setResult("Form Submitted Successfully");
-                event.target.reset();
-            } else {
-                console.log("Error", data);
-                setResult(data.message || "Error submitting form");
-            }
-        } catch (error) {
-            console.error("Submission error", error);
-            setResult("An error occurred. Please try again.");
-        } finally {
-            setIsSubmitting(false);
-        }
-    };
+  return (
+    <section id="contact" className="contact">
+      <div className="container">
+        <div className="section-header">
+          <h2 className="section-title">
+            Get In <span className="gradient-text">Touch</span>
+          </h2>
+          <p className="section-subtitle">
+            Have a project, an opportunity, or just want to connect? I&apos;d love to hear from you.
+          </p>
+        </div>
 
-    return (
-        <section id="contact" className="contact">
-            <div className="container">
-                <div className="contact-card glass">
-                    <div className="contact-info">
-                        <h2 className="section-title">Let's <span className="gradient-text">Connect</span></h2>
-                        <p className="contact-text">
-                            Have a project in mind or just want to chat? Feel free to reach out.
-                            I'm always open to new opportunities and creative collaborations.
-                        </p>
-                        <div className="contact-details">
-                            <div className="detail-item">
-                                <span className="label">Email</span>
-                                <span className="value">khalidbinalikhan@gmail.com</span>
-                            </div>
-                            <div className="detail-item">
-                                <span className="label">Location</span>
-                                <span className="value">Remote / Worldwide</span>
-                            </div>
-                        </div>
-                    </div>
-                    <form className="contact-form" onSubmit={onSubmit}>
-                        <div className="form-group">
-                            <input type="text" name="name" placeholder="Your Name" required />
-                        </div>
-                        <div className="form-group">
-                            <input type="email" name="email" placeholder="Your Email" required />
-                        </div>
-                        <div className="form-group">
-                            <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
-                        </div>
-                        <button type="submit" className="btn btn-primary" disabled={isSubmitting}>
-                            {isSubmitting ? "Sending..." : "Send Message"}
-                        </button>
-                        {result && (
-                            <div className={`form-status ${result.includes('Successfully') ? 'success' : 'error'}`} style={{ marginTop: '1rem', textAlign: 'center', fontSize: '0.9rem' }}>
-                                {result}
-                            </div>
-                        )}
-                    </form>
+        <div className="contact-layout">
+          <div className="contact-info-col">
+            <div className="contact-info-card card">
+              <div className="contact-availability">
+                <HiCheckCircle className="avail-icon" />
+                <span className="mono">Available for new projects</span>
+              </div>
+
+              <div className="contact-detail">
+                <div className="contact-detail-icon">
+                  <HiMail />
                 </div>
+                <div>
+                  <p className="contact-detail-label mono">Email</p>
+                  <a href="mailto:khalidbinalikhan@gmail.com" className="contact-detail-value">
+                    khalidbinalikhan@gmail.com
+                  </a>
+                </div>
+              </div>
+
+              <div className="contact-detail">
+                <div className="contact-detail-icon">
+                  <HiLocationMarker />
+                </div>
+                <div>
+                  <p className="contact-detail-label mono">Location</p>
+                  <p className="contact-detail-value">Pakistan — Remote / Worldwide</p>
+                </div>
+              </div>
             </div>
-        </section>
-    );
+          </div>
+
+          <div className="contact-form-col">
+            <form className="contact-form card" onSubmit={onSubmit}>
+              <div className="form-row">
+                <div className="form-group">
+                  <label className="form-label mono">Name</label>
+                  <input type="text" name="name" placeholder="Your name" required />
+                </div>
+                <div className="form-group">
+                  <label className="form-label mono">Email</label>
+                  <input type="email" name="email" placeholder="you@example.com" required />
+                </div>
+              </div>
+              <div className="form-group">
+                <label className="form-label mono">Subject</label>
+                <input type="text" name="subject" placeholder="What's this about?" />
+              </div>
+              <div className="form-group">
+                <label className="form-label mono">Message</label>
+                <textarea name="message" placeholder="Tell me about your project..." rows="5" required></textarea>
+              </div>
+              <button type="submit" className="btn btn-primary btn-lg" disabled={submitting}>
+                {submitting ? 'Sending...' : 'Send Message'}
+              </button>
+
+              {result && (
+                <p className={`form-result mono ${result.includes('successfully') ? 'success' : 'error'}`}>
+                  {result}
+                </p>
+              )}
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default Contact;
