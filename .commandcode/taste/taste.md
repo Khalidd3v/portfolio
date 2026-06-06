@@ -9,3 +9,5 @@
 
 # Portfolio
 - Emphasize AI/ML skills and projects prominently — list them first, with detailed tech stacks and realistic placeholder descriptions. Confidence: 0.75
+- Use live GitHub API data for activity graphs, contribution stats, and repo counts — never static/dummy data. Use green color scheme matching GitHub's brand. Confidence: 0.70
+- Prominently showcase freelance identity with Fiverr and Upwork logos. Use minimal badge display: show only platform-native tags (Level 2, Rising Star) without verbose text like "Verified Freelancer" or order counts. Confidence: 0.75

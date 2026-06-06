@@ -1,0 +1,117 @@
+.github-activity {
+  padding: 6rem 0;
+}
+
+.github-card {
+  padding: 2rem;
+  overflow: hidden;
+}
+
+.github-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.github-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 1rem;
+}
+
+.github-stat-icon {
+  font-size: 1.5rem;
+  color: hsl(var(--accent-1));
+  margin-bottom: 0.25rem;
+}
+
+.github-stat-value {
+  font-size: 1.75rem;
+  font-weight: 800;
+}
+
+.github-stat-label {
+  font-size: 0.68rem;
+  color: hsl(var(--text-muted));
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.heatmap-loading {
+  text-align: center;
+  padding: 3rem 0;
+  font-size: 0.85rem;
+  color: hsl(var(--text-muted));
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+.heatmap-wrapper {
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+}
+
+.heatmap-svg {
+  display: block;
+  width: 100%;
+  min-width: 750px;
+  height: auto;
+}
+
+.heatmap-label {
+  font-size: 9px;
+  fill: hsl(var(--text-muted));
+}
+
+.heatmap-legend {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 3px;
+  margin-top: 0.75rem;
+  font-size: 0.7rem;
+  color: hsl(var(--text-muted));
+}
+
+.legend-cell {
+  width: 11px;
+  height: 11px;
+  border-radius: 2px;
+}
+
+.github-cta {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .github-stats {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+  }
+
+  .github-stat-value {
+    font-size: 1.25rem;
+  }
+
+  .github-card {
+    padding: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .github-stats {
+    grid-template-columns: 1fr;
+  }
+}

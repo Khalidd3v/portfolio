@@ -78,6 +78,62 @@
   font-weight: 600;
 }
 
+/* Freelance Badges */
+.freelance-badges {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.freelance-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: var(--radius-md);
+  font-size: 0.82rem;
+  transition: all var(--transition-fast);
+}
+
+.fiverr-badge {
+  background: hsla(122, 39%, 49%, 0.08);
+  border: 1px solid hsla(122, 39%, 49%, 0.15);
+  color: hsl(122, 39%, 56%);
+}
+
+.fiverr-badge:hover {
+  background: hsla(122, 39%, 49%, 0.12);
+  border-color: hsla(122, 39%, 49%, 0.3);
+}
+
+.upwork-badge {
+  background: hsla(137, 40%, 49%, 0.08);
+  border: 1px solid hsla(137, 40%, 49%, 0.15);
+  color: hsl(137, 40%, 56%);
+}
+
+.upwork-badge:hover {
+  background: hsla(137, 40%, 49%, 0.12);
+  border-color: hsla(137, 40%, 49%, 0.3);
+}
+
+.badge-content {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.badge-content strong {
+  font-size: 0.8rem;
+}
+
+.badge-sub {
+  font-size: 0.65rem;
+  opacity: 0.7;
+}
+
 .hero-meta {
   margin-bottom: 2.5rem;
 }

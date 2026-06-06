@@ -136,6 +136,11 @@
   margin-top: 0.4rem;
 }
 
+.freelance-dot {
+  background: hsl(var(--success));
+  box-shadow: 0 0 10px hsla(var(--success), 0.4);
+}
+
 .timeline-line {
   flex: 1;
   width: 1px;

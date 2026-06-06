@@ -2,11 +2,10 @@ import { useState } from 'react';
 import {
   SiPython, SiJavascript, SiTypescript, SiPostgresql, SiMongodb, SiRedis,
   SiReact, SiNextdotjs, SiTailwindcss, SiDjango, SiFastapi, SiNodedotjs,
-  SiDocker, SiAmazonwebservices, SiNginx, SiGithubactions, SiGit, SiLinux,
-  SiHuggingface,
+  SiDocker, SiAmazonwebservices, SiGooglecloud, SiNginx, SiGithubactions, SiGit, SiLinux,
+  SiHuggingface, SiFiverr, SiUpwork, SiWhatsapp,
 } from 'react-icons/si';
-import { HiOutlineChip, HiAcademicCap, HiBriefcase, HiCode, HiDatabase, HiServer } from 'react-icons/hi';
-import { VscGraph } from 'react-icons/vsc';
+import { HiOutlineChip, HiAcademicCap, HiBriefcase, HiCode, HiDatabase, HiServer, HiCurrencyDollar } from 'react-icons/hi';
 import './About.css';
 
 const SKILLS = [
@@ -28,17 +27,17 @@ const SKILLS = [
   {
     category: 'AI / ML',
     icon: <HiOutlineChip />,
-    items: ['LangChain', 'OpenAI API', 'RAG', 'Vector DBs', 'Hugging Face', 'Prompt Engineering', 'LLM Fine-tuning', 'Agentic AI'],
+    items: ['LangChain', 'OpenAI API', 'RAG', 'Vector DBs', 'Hugging Face', 'Prompt Engineering', 'LLM Fine-tuning', 'Agentic AI', 'WhatsApp Chatbots'],
   },
   {
-    category: 'DevOps & Cloud',
+    category: 'Cloud & DevOps',
     icon: <SiDocker />,
-    items: ['Docker', 'AWS (EC2, S3, RDS)', 'CI/CD', 'Nginx', 'GitHub Actions', 'Vercel'],
+    items: ['AWS (EC2, S3, RDS, Lambda)', 'Google Cloud (GCE, GCS, Cloud Run)', 'Docker', 'CI/CD', 'Nginx', 'GitHub Actions'],
   },
   {
     category: 'Databases',
     icon: <HiDatabase />,
-    items: ['PostgreSQL', 'MongoDB', 'Redis', 'ChromaDB', 'SQLite'],
+    items: ['PostgreSQL', 'MongoDB', 'Redis', 'ChromaDB', 'SQLite', 'Firestore'],
   },
   {
     category: 'Tools',
@@ -80,6 +79,25 @@ const EXPERIENCE = [
   },
 ];
 
+const FREELANCE = [
+  {
+    company: 'Fiverr',
+    url: 'https://www.fiverr.com/khalidprofile',
+    role: 'Level 2 Seller — Full Stack & AI Developer',
+    period: '2022 — Present',
+    description: 'Top-rated Level 2 freelancer with 20+ completed orders and 5-star ratings. Specialized in building WhatsApp chatbots, custom AI integrations, full-stack web applications, and REST API development for clients worldwide.',
+    tags: ['Chatbots', 'WhatsApp API', 'Python', 'React', 'Django', 'AI Integration'],
+  },
+  {
+    company: 'Upwork',
+    url: 'https://www.upwork.com/freelancers/~0166c02535be5cf16a',
+    role: 'Rising Talent — Software Engineer',
+    period: '2022 — Present',
+    description: 'Rising Talent freelancer delivering high-quality software engineering solutions. Projects include SaaS platform development, API architecture, AI/ML integrations, and enterprise dashboard systems for international clients.',
+    tags: ['SaaS', 'API Development', 'AI/ML', 'Full Stack', 'Cloud Architecture'],
+  },
+];
+
 const EDUCATION = [
   {
     degree: 'Bachelor of Science in Computer Science',
@@ -92,6 +110,7 @@ const EDUCATION = [
 const TABS = [
   { key: 'skills', label: 'Skills', icon: <HiOutlineChip /> },
   { key: 'experience', label: 'Experience', icon: <HiBriefcase /> },
+  { key: 'freelance', label: 'Freelance', icon: <HiCurrencyDollar /> },
   { key: 'education', label: 'Education', icon: <HiAcademicCap /> },
 ];
 
@@ -179,6 +198,38 @@ const About = () => {
               </div>
             )}
 
+            {activeTab === 'freelance' && (
+              <div className="timeline">
+                {FREELANCE.map((exp, i) => (
+                  <div key={i} className="timeline-item">
+                    <div className="timeline-marker">
+                      <div className="timeline-dot freelance-dot" />
+                      {i < FREELANCE.length - 1 && <div className="timeline-line" />}
+                    </div>
+                    <div className="timeline-content">
+                      <div className="timeline-header">
+                        <div>
+                          <h3 className="timeline-role">{exp.role}</h3>
+                          <h4 className="timeline-company">
+                            <a href={exp.url} target="_blank" rel="noreferrer" className="company-link">
+                              {exp.company}
+                            </a>
+                          </h4>
+                        </div>
+                        <span className="period-badge mono">{exp.period}</span>
+                      </div>
+                      <p className="timeline-desc">{exp.description}</p>
+                      <div className="timeline-tags">
+                        {exp.tags.map(tag => (
+                          <span key={tag} className="tag">{tag}</span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+
             {activeTab === 'education' && (
               <div className="education-list">
                 {EDUCATION.map((edu, i) => (
@@ -205,8 +256,8 @@ const About = () => {
           {[
             { value: '6+', label: 'Years Exp' },
             { value: '20+', label: 'Projects Built' },
-            { value: '3', label: 'SaaS Products' },
-            { value: '2', label: 'Startups Founded' },
+            { value: '20+', label: 'Fiverr Orders' },
+            { value: '5★', label: 'Avg Rating' },
           ].map(({ value, label }) => (
             <div key={label} className="stat-card card">
               <span className="stat-value gradient-text">{value}</span>

@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" width="800" height="400">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d0d0d"/>
+      <stop offset="100%" stop-color="#151022"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ff6b6b"/>
+      <stop offset="100%" stop-color="#ff8e53"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+
+  <rect width="800" height="400" fill="url(#bg)"/>
+  <rect width="800" height="400" fill="url(#grid)"/>
+
+  <!-- Anomaly graph icon -->
+  <g transform="translate(400, 175)">
+    <!-- Chart area -->
+    <rect x="-80" y="-75" width="160" height="130" rx="6" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+    <rect x="-80" y="-75" width="160" height="130" rx="6" fill="rgba(255,107,107,0.03)"/>
+
+    <!-- Grid lines -->
+    <line x1="-80" y1="-50" x2="80" y2="-50" stroke="rgba(255,255,255,0.04)" stroke-width="0.5"/>
+    <line x1="-80" y1="-25" x2="80" y2="-25" stroke="rgba(255,255,255,0.04)" stroke-width="0.5"/>
+    <line x1="-80" y1="0" x2="80" y2="0" stroke="rgba(255,255,255,0.04)" stroke-width="0.5"/>
+    <line x1="-80" y1="25" x2="80" y2="25" stroke="rgba(255,255,255,0.04)" stroke-width="0.5"/>
+
+    <!-- Normal baseline -->
+    <line x1="-70" y1="30" x2="-20" y2="25" stroke="rgba(255,255,255,0.2)" stroke-width="1" stroke-linecap="round"/>
+    <line x1="-20" y1="25" x2="30" y2="20" stroke="rgba(255,255,255,0.2)" stroke-width="1" stroke-linecap="round"/>
+    <line x1="30" y1="20" x2="70" y2="28" stroke="rgba(255,255,255,0.2)" stroke-width="1" stroke-linecap="round"/>
+
+    <!-- Anomaly spike -->
+    <polyline points="20,25 40,-50 45,-55 50,-45 55,-8 60,20" fill="none" stroke="url(#accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+
+    <!-- Anomaly dot -->
+    <circle cx="45" cy="-55" r="4" fill="url(#accent)" opacity="0.9">
+      <animate attributeName="r" values="3;6;3" dur="2s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.9;0.4;0.9" dur="2s" repeatCount="indefinite"/>
+    </circle>
+
+    <!-- Alert bell -->
+    <g transform="translate(95, -55)">
+      <path d="M0 -8 C0 -14 -2 -16 -6 -16 L6 -16 C10 -16 8 -14 8 -8" stroke="url(#accent)" stroke-width="1.5" fill="none" opacity="0.6"/>
+      <rect x="-3" y="-4" width="6" height="8" rx="1" fill="none" stroke="url(#accent)" stroke-width="1.5" opacity="0.6"/>
+      <circle cx="0" cy="6" r="1.5" fill="url(#accent)" opacity="0.6"/>
+    </g>
+  </g>
+
+  <text x="400" y="100" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="24" font-weight="600" fill="rgba(255,255,255,0.9)">AnomalySense</text>
+  <text x="400" y="126" text-anchor="middle" font-family="'Inter', sans-serif" font-size="12" fill="rgba(255,255,255,0.4)" letter-spacing="2">REAL-TIME · ML</text>
+
+  <!-- Tags -->
+  <g transform="translate(400, 340)">
+    <rect x="-145" y="-10" width="54" height="20" rx="4" fill="rgba(255,107,107,0.1)" stroke="rgba(255,107,107,0.2)" stroke-width="1"/>
+    <text x="-118" y="5" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" fill="rgba(255,107,107,0.8)">TensorFlow</text>
+
+    <rect x="-79" y="-10" width="40" height="20" rx="4" fill="rgba(255,107,107,0.1)" stroke="rgba(255,107,107,0.2)" stroke-width="1"/>
+    <text x="-59" y="5" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" fill="rgba(255,107,107,0.8)">Kafka</text>
+
+    <rect x="-27" y="-10" width="54" height="20" rx="4" fill="rgba(255,107,107,0.1)" stroke="rgba(255,107,107,0.2)" stroke-width="1"/>
+    <text x="0" y="5" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" fill="rgba(255,107,107,0.8)">Grafana</text>
+
+    <rect x="39" y="-10" width="56" height="20" rx="4" fill="rgba(255,107,107,0.1)" stroke="rgba(255,107,107,0.2)" stroke-width="1"/>
+    <text x="67" y="5" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" fill="rgba(255,107,107,0.8)">Time-Series</text>
+  </g>
+</svg>

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { HiArrowRight, HiDocumentText, HiLocationMarker } from 'react-icons/hi';
-import { SiGithub } from 'react-icons/si';
+import { SiGithub, SiFiverr, SiUpwork } from 'react-icons/si';
 import './Hero.css';
 
 const Hero = () => {
@@ -25,6 +25,33 @@ const Hero = () => {
           to real-time ML pipelines. Currently engineering KPIs, AI workflows, and
           data science solutions at <span className="highlight">Qurk</span>.
         </p>
+
+        <div className="freelance-badges">
+          <a
+            href="https://www.fiverr.com/khalidprofile"
+            target="_blank"
+            rel="noreferrer"
+            className="freelance-badge fiverr-badge"
+          >
+            <SiFiverr />
+            <span className="badge-content">
+              <strong>Fiverr</strong>
+              <span className="badge-sub mono">Level 2</span>
+            </span>
+          </a>
+          <a
+            href="https://www.upwork.com/freelancers/~0166c02535be5cf16a"
+            target="_blank"
+            rel="noreferrer"
+            className="freelance-badge upwork-badge"
+          >
+            <SiUpwork />
+            <span className="badge-content">
+              <strong>Upwork</strong>
+              <span className="badge-sub mono">Rising Talent</span>
+            </span>
+          </a>
+        </div>
 
         <div className="hero-meta">
           <span className="hero-location">
